@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity(), CameraBridgeViewBase.CvCameraViewListe
 
     override fun onCameraFrame(inputFrame: CameraBridgeViewBase.CvCameraViewFrame?): Mat? {
         rgba = inputFrame?.rgba()
+        rgba?.let {
+            OpenCVMiddle.faceDetection(it.nativeObjAddr)
+        }
         return rgba
     }
 
@@ -73,6 +76,5 @@ class MainActivity : AppCompatActivity(), CameraBridgeViewBase.CvCameraViewListe
 
     companion object {
         val TAG = "Main Activity"
-
     }
 }
